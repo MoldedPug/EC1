@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.slide {
+    display: none;
+    padding: 20px;
+    background: #fff;
+    border: 1px solid #ddd;
+    margin: 20px auto;
+    max-width: 800px;
+    min-height: 400px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.slide.active {
+    display: block;
+}
+
+.title {
+    color: #2c3e50;
+    text-align: center;
+    padding: 10px;
+    font-size: 24px;
+    background: #ecf0f1;
+    margin-bottom: 20px;
+}
+
+.content {
+    padding: 20px;
+}
+
+.navigation {
+    text-align: center;
+    margin: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    background: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #2980b9;
+}
+
+.progress {
+    text-align: center;
+    color: #666;
+}
+
+.diagram {
+    text-align: center;
+    margin: 20px 0;
+    padding: 10px;
+    background: #f9f9f9;
+}
+</style>
+</head>
+<body>
+
+<div id="presentation">
+    <div class="slide active">
+        <div class="title">Circuits Seqüencials</div>
+        <div class="content">
+            <h2>Què són els circuits seqüencials?</h2>
+            <ul>
+                <li>Circuits on les sortides depenen de:
+                    <ul>
+                        <li>Les entrades actuals</li>
+                        <li>L'estat anterior del circuit</li>
+                    </ul>
+                </li>
+                <li>Incorporen elements de memòria</li>
+                <li>Poden recordar informació prèvia</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="slide">
+        <div class="title">Element Bàsic de Memòria</div>
+        <div class="content">
+            <div class="diagram">
+                [Element bàsic amb realimentació]
+                x = y
+                y = x
+            </div>
+            <ul>
+                <li>Estats possibles:
+                    <ul>
+                        <li>X=0, Y=1</li>
+                        <li>X=1, Y=0</li>
+                    </ul>
+                </li>
+                <li>Característica: No té entrades externes</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="slide">
+        <div class="title">Biestables (Flip-flops)</div>
+        <div class="content">
+            <h3>Tipus principals:</h3>
+            <ul>
+                <li>Flip-flop RS (Set-Reset)</li>
+                <li>Flip-flop D (Data)</li>
+                <li>Flip-flop JK</li>
+                <li>Flip-flop T (Toggle)</li>
+            </ul>
+            <p>Característiques comunes:</p>
+            <ul>
+                <li>Emmagatzemen 1 bit d'informació</li>
+                <li>Tenen sortides complementàries (Q i Q')</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="slide">
+        <div class="title">Flip-flop RS</div>
+        <div class="content">
+            <div class="diagram">
+                [Diagrama FF-RS]
+            </div>
+            <h3>Taula de funcionament:</h3>
+            <table border="1" style="margin: auto;">
+                <tr><th>R</th><th>S</th><th>Q(t+1)</th></tr>
+                <tr><td>0</td><td>0</td><td>Q(t)</td></tr>
+                <tr><td>0</td><td>1</td><td>1</td></tr>
+                <tr><td>1</td><td>0</td><td>0</td></tr>
+                <tr><td>1</td><td>1</td><td>No permès</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="slide">
+        <div class="title">Anàlisi i Disseny</div>
+        <div class="content">
+            <h3>Passos per l'anàlisi:</h3>
+            <ol>
+                <li>Identificar equacions lògiques</li>
+                <li>Crear taula de transició</li>
+                <li>Desenvolupar diagrama d'estats</li>
+            </ol>
+            <h3>Passos pel disseny:</h3>
+            <ol>
+                <li>Definir diagrama d'estats</li>
+                <li>Crear taula de transició</li>
+                <li>Obtenir equacions</li>
+                <li>Simplificar i implementar</li>
+            </ol>
+        </div>
+    </div>
+</div>
+
+<div class="navigation">
+    <button onclick="prevSlide()">Anterior</button>
+    <button onclick="nextSlide()">Següent</button>
+</div>
+
+<div class="progress">
+    Diapositiva <span id="currentSlide">1</span> de <span id="totalSlides">5</span>
+</div>
+
+<script>
+let currentSlideIndex = 0;
+const slides = document.querySelectorAll('.slide');
+const totalSlides = slides.length;
+document.getElementById('totalSlides').textContent = totalSlides;
+
+function showSlide(index) {
+    slides.forEach(slide => slide.classList.remove('active'));
+    slides[index].classList.add('active');
+    document.getElementById('currentSlide').textContent = index + 1;
+}
+
+function nextSlide() {
+    currentSlideIndex = (currentSlideIndex + 1) % totalSlides;
+    showSlide(currentSlideIndex);
+}
+
+function prevSlide() {
+    currentSlideIndex = (currentSlideIndex - 1 + totalSlides) % totalSlides;
+    showSlide(currentSlideIndex);
+}
+</script>
+
+</body>
+</html>
