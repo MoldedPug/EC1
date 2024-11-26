@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    font-family: Arial, sans-serif;
+}
+
+.section {
+    background: #fff;
+    border: 1px solid #ddd;
+    margin: 20px 0;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.title {
+    background: #2c3e50;
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+.diagram {
+    text-align: center;
+    padding: 20px;
+    background: #f9f9f9;
+    margin: 20px 0;
+}
+
+.diagram pre {
+    display: inline-block;
+    text-align: left;
+    font-family: monospace;
+}
+
+.features {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 5px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+    <div class="title">
+        <h1>Flip-flop JK Síncron</h1>
+    </div>
+
+    <div class="section">
+        <h2>Símbol i Entrades</h2>
+        <div class="diagram">
+            <pre>
+    ┌─────────┐
+ J─►│         │
+    │   JK    │
+ K─►│         ├─►Q
+    │   FF    │
+CK─►│         ├─►Q'
+    └─────────┘
+            </pre>
+        </div>
+        <ul>
+            <li>J: Entrada Set</li>
+            <li>K: Entrada Reset</li>
+            <li>CK: Senyal de rellotge</li>
+            <li>Q: Sortida</li>
+            <li>Q': Sortida complementària</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Taula de Comportament</h2>
+        <table>
+            <tr>
+                <th>CK</th>
+                <th>J</th>
+                <th>K</th>
+                <th>Q(t+1)</th>
+                <th>Descripció</th>
+            </tr>
+            <tr>
+                <td>↑</td>
+                <td>0</td>
+                <td>0</td>
+                <td>Q(t)</td>
+                <td>No canvia</td>
+            </tr>
+            <tr>
+                <td>↑</td>
+                <td>0</td>
+                <td>1</td>
+                <td>0</td>
+                <td>Reset</td>
+            </tr>
+            <tr>
+                <td>↑</td>
+                <td>1</td>
+                <td>0</td>
+                <td>1</td>
+                <td>Set</td>
+            </tr>
+            <tr>
+                <td>↑</td>
+                <td>1</td>
+                <td>1</td>
+                <td>Q'(t)</td>
+                <td>Toggle</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>Característiques Principals</h2>
+        <div class="features">
+            <ul>
+                <li>És síncron: només canvia amb el flanc de pujada del rellotge</li>
+                <li>No té estats prohibits (a diferència del RS)</li>
+                <li>Quan J=K=1, funciona com un flip-flop T (toggle)</li>
+                <li>Quan J=K=0, manté l'estat anterior</li>
+                <li>És més versàtil que el flip-flop RS</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Aplicacions</h2>
+        <ul>
+            <li>Comptadors digitals</li>
+            <li>Registres de desplaçament</li>
+            <li>Divisors de freqüència</li>
+            <li>Circuits de control seqüencial</li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>
